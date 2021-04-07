@@ -351,7 +351,7 @@ let mock = [{
     name: "Smoked Paprika",
     price: "$8.31",
     country: "Brazil",
-    image: 'smoked-paprika.jpg'
+    image: 'cucumber2.jpg'
   }
 ]
 
