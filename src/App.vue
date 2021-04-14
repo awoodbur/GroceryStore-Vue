@@ -1,27 +1,32 @@
 <template>
 <div id="app">
   <div id="menu">
-    <div id="brand">
-      <router-link to="/">
-        <img src="/images/logo.png">
-      </router-link>
-    </div>
-    <div id="side">
-      <router-link to="/browse">
-        <div class="menu-item browse">
-          <img src="/images/globe.png">
-          <p>Browse</p>
+    <div id="left_side">
+      <router-link to="/favorites">
+        <div class="menu-item">
+          <img src="/images/heart.png">
+          <p>{{numberOfItems}} favorites</p>
         </div>
       </router-link>
-      <router-link to="/cart">
+    </div>
+    <div id="brand">
+      <router-link to="/">
+        <img src="/images/home.jpg">
+      </router-link>
+    </div>
+    <div id="right_side">
+      <router-link to="/admin">
         <div class="menu-item">
-          <img src="/images/love.png">
-          <p>{{numberOfItems}} items</p>
+          <img src="/images/gear.png">
+          <p>Admin</p>
         </div>
       </router-link>
     </div>
   </div>
   <router-view />
+  <div class="footer">
+    <a href="https://github.com/awoodbur/creative3.git">Github Repository</a>
+  </div>
 </div>
 </template>
 
@@ -29,7 +34,7 @@
 export default {
   computed: {
     numberOfItems() {
-      return this.$root.$data.cart.length;
+      return this.$root.$data.favorites.length;
     }
   }
 }
@@ -41,15 +46,15 @@ export default {
 }
 
 body {
-  margin: 50px 100px;
-
+  margin: 25px 50px;
+  background-image: linear-gradient(135deg, #e6f2ff 0%, #cce6ff 100%);
 }
 
 #menu {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 5px;
-  grid-template-areas: "none brand side";
+  grid-template-areas: "left_side brand right_side";
   margin-bottom: 50px;
 }
 
@@ -67,19 +72,30 @@ body {
   height: 200px;
 }
 
-#side {
-  grid-area: side;
+#left_side {
+  grid-area: left_side;
+  display: flex;
+  justify-content: flex-start;
+}
+
+#left_side img {
+  width: 75px;
+}
+
+#right_side {
+  grid-area: right_side;
   display: flex;
   justify-content: flex-end;
 }
 
-#side img {
-  width: 50px;
+#right_side img {
+  width: 75px;
 }
 
 .menu-item {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .menu-item p {
@@ -89,4 +105,14 @@ body {
 .browse {
   margin-right: 50px;
 }
+
+.footer {
+  margin: 0px -50px -25px -50px;
+  flex-shrink: 0;
+  padding: 20px 20px;
+  justify-content: center;
+  background-color: #23395B;
+  display: flex
+}
+
 </style>

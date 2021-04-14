@@ -6,8 +6,8 @@ import mock from "./mock-data.js";
 Vue.config.productionTip = false;
 
 let data = {
-  products: mock,
-  cart: []
+  backgrounds: mock,
+  favorites: []
 };
 
 new Vue({

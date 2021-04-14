@@ -1,31 +1,38 @@
 <template>
 <div>
   <div class="wrapper">
+    <h2>Edit tags</h2>
     <div class="search">
       <form class="pure-form">
-        <input v-model="searchText" placeholder="Search wallpapers by tag"/>
+        <input v-model="searchText" placeholder="Search wallpapers by title"/>
+      </form>
+    </div>
+    <div class="search">
+      <form class="pure-form">
+        <input v-model="replaceText" placeholder="Enter new tags here"/>
       </form>
     </div>
   </div>
-  <BackgroundList :backgrounds="backgrounds" />
+  <EditList :backgrounds="backgrounds" :newtag="replaceText" />
 </div>
 </template>
 
 <script>
-import BackgroundList from "../components/BackgroundList.vue"
+import EditList from "../components/EditList.vue"
 export default {
-  name: 'Home',
+  name: 'Admin',
   components: {
-    BackgroundList
+    EditList
   },
   data() {
     return {
       searchText: '',
+      replaceText: "",
     }
   },
   computed: {
     backgrounds() {
-      return this.$root.$data.backgrounds.filter(background => background.tags.toLowerCase().search(this.searchText.toLowerCase()) >= 0);
+      return this.$root.$data.backgrounds.filter(background => background.name.toLowerCase().search(this.searchText.toLowerCase()) >= 0);
     }
   },
 }
@@ -36,6 +43,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .search {
@@ -43,6 +51,7 @@ export default {
   border-radius: 6px;
   width: 50%;
 }
+
 
 form {
   display: table;

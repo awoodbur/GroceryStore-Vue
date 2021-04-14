@@ -1,31 +1,23 @@
 <template>
 <div>
   <div class="wrapper">
-    <div class="search">
-      <form class="pure-form">
-        <input v-model="searchText" placeholder="Search wallpapers by tag"/>
-      </form>
-    </div>
   </div>
-  <BackgroundList :backgrounds="backgrounds" />
+  <h1 style="text-align:center">Favorites</h1>
+  <hr>
+  <FavoritesList :backgrounds="backgrounds" />
 </div>
 </template>
 
 <script>
-import BackgroundList from "../components/BackgroundList.vue"
+import FavoritesList from "../components/FavoritesList.vue"
 export default {
-  name: 'Home',
+  name: 'Favorites',
   components: {
-    BackgroundList
-  },
-  data() {
-    return {
-      searchText: '',
-    }
+    FavoritesList
   },
   computed: {
     backgrounds() {
-      return this.$root.$data.backgrounds.filter(background => background.tags.toLowerCase().search(this.searchText.toLowerCase()) >= 0);
+      return this.$root.$data.favorites;
     }
   },
 }
@@ -39,8 +31,8 @@ export default {
 }
 
 .search {
-  border: 2px solid #ccc;
-  border-radius: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   width: 50%;
 }
 
